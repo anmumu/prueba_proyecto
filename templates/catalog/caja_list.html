@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Lista de Cajas{% endblock %}
+
+{% block content %}
+    <h1>Lista de Cajas</h1>
+    <a href="{% url 'caja_create' %}" class="btn btn-primary mb-3">Nueva Caja</a>
+    <ul class="list-group">
+        {% for caja in cajas %}
+            <li class="list-group-item">
+                <a href="{% url 'caja_detail' caja.pk %}">{{ caja.nombre }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay cajas registradas.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

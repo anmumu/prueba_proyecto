@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{ articulo.nombre }}{% endblock %}
+
+{% block content %}
+    <h1>{{ articulo.nombre }}</h1>
+    <p>Número: {{ articulo.numero_articulo }}</p>
+    <p>Caja: {{ articulo.caja.nombre }}</p>
+    {% if articulo.unidades %}
+        <p>Unidades: {{ articulo.unidades }}</p>
+    {% endif %}
+    {% if articulo.fecha_compra %}
+        <p>Fecha de compra: {{ articulo.fecha_compra }}</p>
+    {% endif %}
+    {% if articulo.precio_compra %}
+        <p>Precio de compra: {{ articulo.precio_compra }}</p>
+    {% endif %}
+    <p>En uso: {% if articulo.en_uso %}Sí{% else %}No{% endif %}</p>
+    {% if articulo.categoria %}
+        <p>Categoría: {{ articulo.categoria }}</p>
+    {% endif %}
+    {% if articulo.imagen %}
+        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.nombre }}" class="img-fluid">
+    {% endif %}
+    {% if articulo.nota %}
+        <p>Nota: {{ articulo.nota }}</p>
+    {% endif %}
+    <div class="mt-3">
+        <a href="{% url 'articulo_update' articulo.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'articulo_delete' articulo.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
+{% endblock %}

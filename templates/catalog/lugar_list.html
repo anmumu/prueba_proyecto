@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Lista de Lugares{% endblock %}
+
+{% block content %}
+    <h1>Lista de Lugares</h1>
+    <a href="{% url 'lugar_create' %}" class="btn btn-primary mb-3">Nuevo Lugar</a>
+    <ul class="list-group">
+        {% for lugar in lugares %}
+            <li class="list-group-item">
+                <a href="{% url 'lugar_detail' lugar.pk %}">{{ lugar.nombre }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay lugares registrados.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

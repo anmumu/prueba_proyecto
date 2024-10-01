@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Lista de Artículos{% endblock %}
+
+{% block content %}
+    <h1>Lista de Artículos</h1>
+    <a href="{% url 'articulo_create' %}" class="btn btn-primary mb-3">Nuevo Artículo</a>
+    <ul class="list-group">
+        {% for articulo in articulos %}
+            <li class="list-group-item">
+                <a href="{% url 'articulo_detail' articulo.pk %}">{{ articulo.nombre }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay artículos registrados.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

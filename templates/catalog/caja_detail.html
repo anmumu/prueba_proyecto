@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{ caja.nombre }}{% endblock %}
+
+{% block content %}
+    <h1>{{ caja.nombre }}</h1>
+    <p>Número: {{ caja.numero_caja }}</p>
+    <p>Lugar: {{ caja.lugar.nombre }}</p>
+    {% if caja.categoria %}
+        <p>Categoría: {{ caja.categoria }}</p>
+    {% endif %}
+    {% if caja.imagen %}
+        <img src="{{ caja.imagen.url }}" alt="{{ caja.nombre }}" class="img-fluid">
+    {% endif %}
+    {% if caja.etiqueta_qr %}
+        <img src="{{ caja.etiqueta_qr.url }}" alt="QR {{ caja.nombre }}" class="img-fluid">
+    {% endif %}
+    {% if caja.nota %}
+        <p>Nota: {{ caja.nota }}</p>
+    {% endif %}
+    <div class="mt-3">
+        <a href="{% url 'caja_update' caja.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'caja_delete' caja.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
+{% endblock %}
